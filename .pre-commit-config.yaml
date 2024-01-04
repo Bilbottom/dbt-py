@@ -1,0 +1,83 @@
+---
+ci:
+  skip: [poetry-lock, pytest]
+
+repos:
+  - repo: meta
+    hooks:
+      - id: identity
+
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.4.0
+    hooks:
+      - id: no-commit-to-branch
+        name: Don't allow commits to the main branch
+        args: ["--branch", "main"]
+      - id: trailing-whitespace
+        name: Remove trailing whitespace
+      - id: end-of-file-fixer
+        name: Ensure files end with a newline character
+      - id: mixed-line-ending
+        name: Align mixed line ending
+      - id: check-added-large-files
+        name: Check for large files
+      - id: check-json
+        name: Check JSON files are valid and parseable
+      - id: check-yaml
+        name: Check YAML files are valid and parseable
+      - id: check-toml
+        name: Check TOML files are valid and parseable
+      - id: check-ast
+        name: Validate Python
+
+  - repo: https://github.com/python-poetry/poetry
+    rev: 1.6.0
+    hooks:
+      - id: poetry-check
+        name: Check that the Poetry configuration is valid
+      - id: poetry-lock
+        name: Check that the lock file is up-to-date
+
+  # Formatting
+  - repo: https://github.com/pre-commit/mirrors-prettier
+    rev: v3.0.2
+    hooks:
+      - id: prettier
+        name: Make code pretty
+
+  - repo: https://github.com/asottile/pyupgrade
+    rev: v3.10.1
+    hooks:
+      - id: pyupgrade
+        args: [--py311-plus]
+        name: Align Python code to latest syntax
+
+  - repo: https://github.com/psf/black
+    rev: 23.7.0
+    hooks:
+      - id: black
+        name: Check Python formatting
+
+  - repo: https://github.com/pycqa/isort
+    rev: 5.12.0
+    hooks:
+      - id: isort
+        name: Sort Python import statements
+        args: ["--filter-files"]
+
+  - repo: https://github.com/hadialqattan/pycln
+    rev: v2.2.2
+    hooks:
+      - id: pycln
+        name: Remove unused imports and variables
+        args: [--config=pyproject.toml]
+
+  # Testing
+  - repo: local
+    hooks:
+      - id: pytest
+        name: Run unit tests
+        entry: pytest tests
+        language: system
+        pass_filenames: false
+        always_run: true

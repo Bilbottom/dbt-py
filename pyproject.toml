@@ -1,0 +1,50 @@
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+
+[tool.poetry]
+name = "dbt-py"
+version = "0.0.0"
+description = "Python wrapper for dbt-core to extend dbt with custom Python."
+readme = "README.md"
+authors = ["Bilbottom"]
+repository = "https://github.com/Bilbottom/dbt-py"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+
+[tool.poetry.group]
+dev.optional = false
+test.optional = false
+ide.optional = false
+
+[tool.poetry.group.dev.dependencies]
+pre-commit = "^3.3.3"
+
+[tool.poetry.group.test.dependencies]
+pytest = "^7.4.0"
+pytest-cov = "^4.1.0"
+
+# Packages just for IDE integration
+[tool.poetry.group.ide.dependencies]
+black = "*"
+
+
+[tool.pytest.ini_options]
+addopts = "--cov=dbt-py --cov-report term-missing"
+testpaths = [
+    "tests",
+]
+
+
+[tool.isort]
+profile = "black"
+
+
+[tool.pylint.format]
+max-line-length = 120
+
+[tool.pylint.MASTER]
+ignore-paths = "^tests/.*$"
+disable = ["no-else-return", "no-else-raise"]
