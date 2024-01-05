@@ -1,0 +1,10 @@
+---
+# This uses the DuckDB adapter for convenience: DuckDB databases are
+# created automatically on connection
+default:
+  outputs:
+    dev:
+      type: duckdb
+      path: "tests/integration/jaffle-shop/target/jaffle-shop.db"
+
+  target: dev

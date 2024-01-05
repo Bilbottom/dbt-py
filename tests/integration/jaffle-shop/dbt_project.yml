@@ -1,0 +1,15 @@
+---
+name: jaffle_shop
+
+config-version: 2
+version: 0.0.0
+
+profile: default
+model-paths: [models]
+target-path: target
+clean-targets: [logs, target]
+
+models:
+  jaffle_shop:
+    +materialized: table
+    +schema: main
