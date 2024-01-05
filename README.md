@@ -14,4 +14,10 @@
 
 # dbt-π 🧬
 
-Python wrapper for dbt-core to extend dbt with custom Python.
+Python wrapper for [dbt-core](https://github.com/dbt-labs/dbt-core) to extend dbt with custom Python.
+
+## Shimmy shimmy shim 🕺🕺🕺
+
+This package is a [shim](<https://en.wikipedia.org/wiki/Shim_(computing)>) for [dbt-core](https://github.com/dbt-labs/dbt-core), inspired by (_cough_ stolen from _cough_) my old boss, darkdreamingdan:
+
+- https://gist.github.com/darkdreamingdan/c5ded709a90fc3c5b420cee5f644f499

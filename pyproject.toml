@@ -11,6 +11,9 @@ readme = "README.md"
 authors = ["Bilbottom"]
 repository = "https://github.com/Bilbottom/dbt-py"
 
+[tool.poetry.scripts]
+dbt-py = "dbt_py:main"
+
 [tool.poetry.dependencies]
 python = "^3.11"
 
@@ -23,6 +26,8 @@ ide.optional = false
 pre-commit = "^3.3.3"
 
 [tool.poetry.group.test.dependencies]
+dbt-core = "^1.5.0"
+dbt-duckdb = "^1.5.0"
 pytest = "^7.4.0"
 pytest-cov = "^4.1.0"
 
@@ -32,19 +37,8 @@ black = "*"
 
 
 [tool.pytest.ini_options]
-addopts = "--cov=dbt-py --cov-report term-missing"
-testpaths = [
-    "tests",
-]
+testpaths = ["tests"]
 
 
 [tool.isort]
 profile = "black"
-
-
-[tool.pylint.format]
-max-line-length = 120
-
-[tool.pylint.MASTER]
-ignore-paths = "^tests/.*$"
-disable = ["no-else-return", "no-else-raise"]
