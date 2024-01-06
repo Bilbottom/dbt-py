@@ -18,7 +18,7 @@ Python wrapper for [dbt-core](https://github.com/dbt-labs/dbt-core) to extend db
 
 ## Shimmy shimmy shim 🕺🕺🕺
 
-This package is a [shim](<https://en.wikipedia.org/wiki/Shim_(computing)>) for [dbt-core](https://github.com/dbt-labs/dbt-core), inspired by (_cough_ stolen from _cough_) my old boss, @darkdreamingdan:
+This package is a [shim](<https://en.wikipedia.org/wiki/Shim_(computing)>) for [dbt-core](https://github.com/dbt-labs/dbt-core), inspired by (_cough_ stolen from _cough_) my old boss, [@darkdreamingdan](https://github.com/darkdreamingdan):
 
 - https://gist.github.com/darkdreamingdan/c5ded709a90fc3c5b420cee5f644f499
 
@@ -37,7 +37,7 @@ The existing Python modules are available in the dbt Jinja context under the `mo
 While in preview, this package is only available from GitHub:
 
 ```
-pip install git+https://github.com/Bilbottom/dbt-py@main
+pip install git+https://github.com/Bilbottom/dbt-py@v0.0.1
 ```
 
 This will be made available on PyPI once it's ready for general use.
@@ -120,3 +120,11 @@ This is likely to change in a future release, but for now you may choose to expl
 ```jinja
 {{ modules.math.pi }}
 ```
+
+## Future Work 🚧
+
+This is still in preview, and there are a few things to be added before it's ready for general use:
+
+- Support for importing any number of packages (currently only one package is supported)
+- Configuration via config files and CLI arguments (currently only environment variables are supported)
+- More robust testing
