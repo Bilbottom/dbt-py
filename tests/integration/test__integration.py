@@ -1,7 +1,6 @@
 """
 Integration tests for the package.
 """
-import os
 import textwrap
 import unittest.mock
 
@@ -30,13 +29,21 @@ EXAMPLE_COMPILED = textwrap.dedent(
 )
 
 
-def test__integration() -> None:
+@pytest.fixture
+def mock_env(monkeypatch) -> None:
+    """
+    Mock the environment variables used by dbt_py.
+    """
+    monkeypatch.setenv(
+        "DBT_PY_PACKAGE_ROOT", "tests.integration.jaffle-shop.dbt_py_test"
+    )
+    monkeypatch.setenv("DBT_PY_PACKAGE_NAME", "dbt_py_test")
+
+
+def test__integration(mock_env) -> None:
     """
     Placeholder integration test.
     """
-    os.environ["DBT_PY_PACKAGE_ROOT"] = "tests.integration.jaffle-shop.dbt_py"
-    os.environ["DBT_PY_PACKAGE_NAME"] = "dbt_py"
-
     with unittest.mock.patch("sys.argv", ["", "compile", *ARGS]):
         dbt_py.main()
 
