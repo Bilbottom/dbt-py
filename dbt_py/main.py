@@ -15,9 +15,7 @@ from dbt.context.base import get_context_modules as _get_context_modules
 
 PROJECT_ROOT = pathlib.Path(__file__).parent.parent
 # Python-style ref, e.g. `package.module.submodule`
-PACKAGE_ROOT: str = os.environ.get("DBT_PY_PACKAGE_ROOT", "custom")
-# The name to associate with the package
-PACKAGE_NAME: str = os.environ.get("DBT_PY_PACKAGE_NAME", PACKAGE_ROOT)
+PACKAGE_ROOT: str = os.environ.get("DBT_PY_PACKAGE_ROOT")
 
 
 def import_submodules(
@@ -30,6 +28,10 @@ def import_submodules(
     - https://stackoverflow.com/a/25562415/10730311
     """
     package = importlib.import_module(package_name)
+    if not hasattr(package, "__path__"):
+        # `package` is a module, don't recurse any further
+        return {}
+
     results = {}
     for loader, name, is_pkg in pkgutil.walk_packages(package.__path__):
         full_name = f"{package.__name__}.{name}"
@@ -44,9 +46,12 @@ def new_get_context_modules() -> dict[str, dict[str, Any]]:
     """
     Append the custom modules into the whitelisted dbt modules.
     """
-    import_submodules(PACKAGE_ROOT)
+    package_root: str = PACKAGE_ROOT or "custom"
+    package_name: str = os.environ.get("DBT_PY_PACKAGE_NAME") or package_root
+
+    import_submodules(package_root)
     modules = _get_context_modules()
-    modules[PACKAGE_NAME] = importlib.import_module(PACKAGE_ROOT)  # type: ignore
+    modules[package_name] = importlib.import_module(package_root)  # type: ignore
 
     return modules
 
