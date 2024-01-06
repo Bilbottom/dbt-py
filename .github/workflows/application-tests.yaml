@@ -1,0 +1,43 @@
+---
+name: Application Tests
+run-name: Application tests 🧪
+
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - "dbt_py/**"
+      - "tests/**"
+      - poetry.lock
+      - .pre-commit-config.yaml
+
+jobs:
+  version-testing:
+    name: Run tests over multiple OSs
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [windows-latest, macos-latest, ubuntu-latest]
+
+    steps:
+      - name: 🛎️ Check out repository
+        uses: actions/checkout@v3
+
+      - name: 📦 Set up Poetry
+        run: pipx install poetry==1.7.0
+
+      - name: 🐍 Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: 3.11
+          cache: poetry
+
+      - name: 🔨 Install dependencies
+        run: poetry install --with test
+
+      - name: ✅ Run unit tests
+        run: poetry run pytest
+        env:
+          # TODO: The tests should configure this themselves
+          DBT_PY_PACKAGE_ROOT: "tests.integration.jaffle-shop.dbt_py"
+          DBT_PY_PACKAGE_NAME: "dbt_py"
