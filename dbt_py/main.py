@@ -15,13 +15,14 @@ from dbt.context.base import get_context_modules as _get_context_modules
 
 PROJECT_ROOT = pathlib.Path(__file__).parent.parent
 # Python-style ref, e.g. `package.module.submodule`
-PACKAGE_ROOT: str = os.environ.get("DBT_PY_PACKAGE_ROOT", "dbt_py")
+PACKAGE_ROOT: str = os.environ.get("DBT_PY_PACKAGE_ROOT", "custom")
 # The name to associate with the package
 PACKAGE_NAME: str = os.environ.get("DBT_PY_PACKAGE_NAME", PACKAGE_ROOT)
 
 
 def import_submodules(
-    package_name: str, recursive: bool = True
+    package_name: str,
+    recursive: bool = True,
 ) -> dict[str, ModuleType]:
     """
     Import all submodules of a module, recursively, including subpackages.

@@ -38,6 +38,6 @@ jobs:
       - name: ✅ Run unit tests
         run: poetry run pytest
         env:
-          # TODO: The tests should configure this themselves
-          DBT_PY_PACKAGE_ROOT: "tests.integration.jaffle-shop.dbt_py"
-          DBT_PY_PACKAGE_NAME: "dbt_py"
+          # TODO: This is configured in the tests, but not being picked up in CI
+          DBT_PY_PACKAGE_ROOT: "tests.integration.jaffle-shop.dbt_py_test"
+          DBT_PY_PACKAGE_NAME: "dbt_py_test"
