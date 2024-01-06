@@ -5,7 +5,7 @@ build-backend = "poetry.core.masonry.api"
 
 [tool.poetry]
 name = "dbt-py"
-version = "0.0.0"
+version = "0.0.1"
 description = "Python wrapper for dbt-core to extend dbt with custom Python."
 readme = "README.md"
 authors = ["Bilbottom"]
@@ -18,9 +18,9 @@ dbt-py = "dbt_py:main"
 python = "^3.11"
 
 [tool.poetry.group]
-dev.optional = false
-test.optional = false
-ide.optional = false
+dev.optional = true
+test.optional = true
+ide.optional = true
 
 [tool.poetry.group.dev.dependencies]
 pre-commit = "^3.3.3"
