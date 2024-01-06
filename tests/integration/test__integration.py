@@ -37,7 +37,7 @@ def mock_env(monkeypatch) -> None:
     monkeypatch.setenv(
         "DBT_PY_PACKAGE_ROOT", "tests.integration.jaffle-shop.dbt_py_test"
     )
-    monkeypatch.setenv("DBT_PY_PACKAGE_NAME", "dbt_py_test")
+    monkeypatch.setenv("DBT_PY_PACKAGE_NAME", "custom_py")
 
 
 def test__integration(mock_env) -> None:
