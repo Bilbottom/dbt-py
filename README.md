@@ -37,7 +37,7 @@ The existing Python modules are available in the dbt Jinja context under the `mo
 While in preview, this package is only available from GitHub:
 
 ```
-pip install git+https://github.com/Bilbottom/dbt-py@v0.0.1
+pip install git+https://github.com/Bilbottom/dbt-py@v0.0.2
 ```
 
 This will be made available on PyPI once it's ready for general use.
