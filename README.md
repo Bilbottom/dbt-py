@@ -111,15 +111,15 @@ The default module/package and Jinja context name is `custom` but both can be co
 
 In particular, you can use the `DBT_PY_PACKAGE_ROOT` environment variable to reference a custom module/package that is not at the root of your dbt project.
 
-#### Warning ⚠️
-
-If you set the `DBT_PY_PACKAGE_ROOT` environment variable to a name that already exists, this package will use the existing module/package rather than your custom one. Make sure that your custom module/package name does not clash with any existing modules/packages.
-
-This is likely to change in a future release, but for now you may choose to exploit this behaviour to use an existing module/package in your dbt Jinja context. For example, you could set `DBT_PY_PACKAGE_ROOT` to `math` and then reference the `math` standard library in your dbt Jinja context:
-
-```jinja
-{{ modules.math.pi }}
-```
+> [!WARNING]
+>
+> If you set the `DBT_PY_PACKAGE_ROOT` environment variable to a name that already exists, this package will use the existing module/package rather than your custom one. Make sure that your custom module/package name does not clash with any existing modules/packages.
+>
+> This is likely to change in a future release, but for now you may choose to exploit this behaviour to use an existing module/package in your dbt Jinja context. For example, you could set `DBT_PY_PACKAGE_ROOT` to `math` and then reference the `math` standard library in your dbt Jinja context:
+>
+> ```jinja
+> {{ modules.math.pi }}
+> ```
 
 ## Future Work 🚧
 
