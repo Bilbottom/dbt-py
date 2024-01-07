@@ -10,6 +10,9 @@ description = "Python wrapper for dbt-core to extend dbt with custom Python."
 readme = "README.md"
 authors = ["Bilbottom"]
 repository = "https://github.com/Bilbottom/dbt-py"
+packages = [
+    { include = "dbt_py" },
+]
 
 [tool.poetry.scripts]
 dbt-py = "dbt_py:main"
