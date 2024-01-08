@@ -8,7 +8,7 @@ repos:
       - id: identity
 
   - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v4.4.0
+    rev: v4.5.0
     hooks:
       - id: no-commit-to-branch
         name: Don't allow commits to the main branch
@@ -40,33 +40,33 @@ repos:
 
   # Formatting
   - repo: https://github.com/pre-commit/mirrors-prettier
-    rev: v3.0.2
+    rev: v4.0.0-alpha.8
     hooks:
       - id: prettier
         name: Make code pretty
 
   - repo: https://github.com/asottile/pyupgrade
-    rev: v3.10.1
+    rev: v3.15.0
     hooks:
       - id: pyupgrade
         args: [--py311-plus]
         name: Align Python code to latest syntax
 
   - repo: https://github.com/psf/black
-    rev: 23.7.0
+    rev: 23.12.1
     hooks:
       - id: black
         name: Check Python formatting
 
   - repo: https://github.com/pycqa/isort
-    rev: 5.12.0
+    rev: 5.13.2
     hooks:
       - id: isort
         name: Sort Python import statements
         args: ["--filter-files"]
 
   - repo: https://github.com/hadialqattan/pycln
-    rev: v2.2.2
+    rev: v2.4.0
     hooks:
       - id: pycln
         name: Remove unused imports and variables
