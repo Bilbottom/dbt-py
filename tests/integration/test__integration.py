@@ -1,6 +1,7 @@
 """
 Integration tests for the package.
 """
+
 import textwrap
 import unittest.mock
 

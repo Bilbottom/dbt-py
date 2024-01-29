@@ -1,6 +1,7 @@
 """
 Shim the dbt CLI to include our custom modules.
 """
+
 import importlib
 import os
 import pathlib
