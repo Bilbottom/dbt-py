@@ -53,7 +53,7 @@ repos:
         name: Align Python code to latest syntax
 
   - repo: https://github.com/psf/black
-    rev: 23.12.1
+    rev: 24.1.1
     hooks:
       - id: black
         name: Check Python formatting
