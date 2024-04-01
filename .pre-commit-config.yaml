@@ -47,14 +47,14 @@ repos:
         name: Make code pretty
 
   - repo: https://github.com/asottile/pyupgrade
-    rev: v3.15.1
+    rev: v3.15.2
     hooks:
       - id: pyupgrade
         args: [--py311-plus]
         name: Align Python code to latest syntax
 
   - repo: https://github.com/psf/black
-    rev: 24.2.0
+    rev: 24.3.0
     hooks:
       - id: black
         name: Check Python formatting
