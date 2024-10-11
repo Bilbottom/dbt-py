@@ -2,6 +2,8 @@
 Integration tests for the package.
 """
 
+import pathlib
+import shutil
 import textwrap
 import unittest.mock
 
@@ -36,14 +38,30 @@ def mock_env(monkeypatch) -> None:
     Mock the environment variables used by dbt_py.
     """
     monkeypatch.setenv(
-        "DBT_PY_PACKAGE_ROOT", "tests.integration.jaffle-shop.dbt_py_test"
+        "DBT_PY_PACKAGE_ROOT",
+        "tests.integration.jaffle-shop.dbt_py_test",
     )
-    monkeypatch.setenv("DBT_PY_PACKAGE_NAME", "custom_py")
+    monkeypatch.setenv(
+        "DBT_PY_PACKAGE_NAME",
+        "custom_py",
+    )
 
 
-def test__integration(mock_env) -> None:
+@pytest.fixture
+def teardown() -> None:
     """
-    Placeholder integration test.
+    Remove the compiled directory if it exists.
+    """
+    yield
+    # TODO: I think this should be dynamic
+    target = pathlib.Path("tests/integration/jaffle-shop/target")
+    if target.exists():
+        shutil.rmtree(target)
+
+
+def test__dbt_can_be_successfully_invoked(mock_env, teardown) -> None:
+    """
+    Test that dbt can be successfully invoked.
     """
     with unittest.mock.patch("sys.argv", ["", "compile", *ARGS]):
         dbt_py.main()
