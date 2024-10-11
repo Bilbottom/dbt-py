@@ -39,7 +39,7 @@ The existing Python modules are available in the dbt Jinja context under the `mo
 While in preview, this package is only available from GitHub:
 
 ```
-pip install git+https://github.com/Bilbottom/dbt-py@v0.0.2
+pip install git+https://github.com/Bilbottom/dbt-py@v0.0.3
 ```
 
 This will be made available on PyPI once it's ready for general use.
@@ -130,3 +130,14 @@ This is still in preview, and there are a few things to be added before it's rea
 - Support for importing any number of packages (currently only one package is supported)
 - Configuration via config files and CLI arguments (currently only environment variables are supported)
 - More robust testing
+
+## Contributing 🤝
+
+Raise an issue, or fork the repo and open a pull request.
+
+This project uses [Poetry](https://python-poetry.org/) for dependency management and [pre-commit](https://pre-commit.com/) for linting. After cloning the repo, install the dependencies and enable pre-commit:
+
+```
+poetry install --sync --with dev,test
+pre-commit install --install-hooks
+```
