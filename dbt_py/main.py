@@ -15,8 +15,6 @@ import dbt.context.base
 from dbt.context.base import get_context_modules as _get_context_modules
 
 PROJECT_ROOT = pathlib.Path(__file__).parent.parent
-# Python-style ref, e.g. `package.module.submodule`
-PACKAGE_ROOT: str = os.environ.get("DBT_PY_PACKAGE_ROOT")
 
 
 def import_submodules(
@@ -47,7 +45,8 @@ def new_get_context_modules() -> dict[str, dict[str, Any]]:
     """
     Append the custom modules into the whitelisted dbt modules.
     """
-    package_root: str = PACKAGE_ROOT or "custom"
+    # Python-style ref, e.g. `package.module.submodule`
+    package_root: str = os.environ.get("DBT_PY_PACKAGE_ROOT") or "custom"
     package_name: str = os.environ.get("DBT_PY_PACKAGE_NAME") or package_root
 
     import_submodules(package_root)

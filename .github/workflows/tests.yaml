@@ -1,15 +1,10 @@
 ---
-name: Application Tests
-run-name: Application tests 🧪
+name: Tests
+run-name: Tests 🧪
 
 on:
   workflow_dispatch:
   pull_request:
-    paths:
-      - "dbt_py/**"
-      - "tests/**"
-      - poetry.lock
-      - .pre-commit-config.yaml
 
 jobs:
   version-testing:
@@ -17,17 +12,17 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [windows-latest, macos-latest, ubuntu-latest]
+        os: ["windows-latest", "macos-latest", "ubuntu-latest"]
 
     steps:
       - name: 🛎️ Check out repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: 📦 Set up Poetry
-        run: pipx install poetry==1.7.0
+        run: pipx install poetry==1.8.0
 
       - name: 🐍 Set up Python
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v5
         with:
           python-version: 3.11
           cache: poetry

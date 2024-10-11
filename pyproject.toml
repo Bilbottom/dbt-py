@@ -26,7 +26,8 @@ test.optional = true
 ide.optional = true
 
 [tool.poetry.group.dev.dependencies]
-pre-commit = "^3.3.3"
+coverage-badge = "^1.1.0"
+pre-commit = "^3.6.2"
 
 [tool.poetry.group.test.dependencies]
 dbt-core = "^1.5.0"
@@ -40,6 +41,7 @@ black = "*"
 
 
 [tool.pytest.ini_options]
+addopts = "--cov=dbt_py --cov-fail-under=80"
 testpaths = ["tests"]
 
 

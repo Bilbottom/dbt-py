@@ -1,7 +1,7 @@
 ---
 ci:
   autoupdate_schedule: quarterly
-  skip: [poetry-lock, pytest]
+  skip: ["identity", "poetry-lock", "pytest", "coverage-badge"]
 
 repos:
   - repo: meta
@@ -79,6 +79,12 @@ repos:
       - id: pytest
         name: Run unit tests
         entry: pytest tests
+        language: system
+        pass_filenames: false
+        always_run: true
+      - id: coverage-badge
+        name: Generate coverage badge
+        entry: coverage-badge -o coverage.svg -f
         language: system
         pass_filenames: false
         always_run: true
