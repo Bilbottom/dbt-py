@@ -1,12 +1,14 @@
 <div align="center">
 
-[![Python 3.11](https://img.shields.io/badge/python-3.11-blue.svg)](https://www.python.org/downloads/release/python-3110/)
-[![Python 3.11](https://img.shields.io/badge/dbt-1.5+-blue.svg)](https://github.com/dbt-labs/dbt-core/)
+[![Python](https://img.shields.io/badge/python-3.11-blue.svg)](https://www.python.org/downloads/release/python-3110/)
+[![dbt](https://img.shields.io/badge/dbt-1.5+-blue.svg)](https://github.com/dbt-labs/dbt-core/)
 [![Poetry](https://img.shields.io/endpoint?url=https://python-poetry.org/badge/v0.json)](https://python-poetry.org/)
-![GitHub last commit](https://img.shields.io/github/last-commit/Bilbottom/dbt-py)
+[![GitHub last commit](https://img.shields.io/github/last-commit/Bilbottom/dbt-py)](https://shields.io/badges/git-hub-last-commit)
 
+[![tests](https://github.com/Bilbottom/dbt-py/actions/workflows/tests.yaml/badge.svg)](https://github.com/Bilbottom/dbt-py/actions/workflows/tests.yaml)
+[![coverage](coverage.svg)](https://github.com/dbrgn/coverage-badge)
 [![pre-commit.ci status](https://results.pre-commit.ci/badge/github/Bilbottom/dbt-py/main.svg)](https://results.pre-commit.ci/latest/github/Bilbottom/dbt-py/main)
-[![application-tests](https://github.com/Bilbottom/db-query-profiler/actions/workflows/application-tests.yaml/badge.svg)](https://github.com/Bilbottom/db-query-profiler/actions/workflows/application-tests.yaml)
+[![Sourcery](https://img.shields.io/badge/Sourcery-enabled-brightgreen)](https://sourcery.ai)
 
 </div>
 
