@@ -63,4 +63,10 @@ def main() -> None:
     - https://docs.getdbt.com/reference/programmatic-invocations
     """
     dbt.context.base.get_context_modules = new_get_context_modules
-    dbt.cli.main.dbtRunner().invoke(sys.argv[1:])
+    result = dbt.cli.main.dbtRunner().invoke(sys.argv[1:])
+    if result.success:
+        sys.exit(0)
+    elif result.exception is None:
+        sys.exit(1)
+    else:
+        sys.exit(2)
