@@ -46,39 +46,21 @@ repos:
       - id: prettier
         name: Make code pretty
 
-  - repo: https://github.com/asottile/pyupgrade
-    rev: v3.17.0
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.6.9
     hooks:
-      - id: pyupgrade
-        args: [--py311-plus]
-        name: Align Python code to latest syntax
+      - id: ruff
+        name: Lint Python code
+        args: ["--fix"]
+      - id: ruff-format
+        name: Format Python code
 
-  - repo: https://github.com/psf/black
-    rev: 24.10.0
-    hooks:
-      - id: black
-        name: Check Python formatting
-
-  - repo: https://github.com/pycqa/isort
-    rev: 5.13.2
-    hooks:
-      - id: isort
-        name: Sort Python import statements
-        args: ["--filter-files"]
-
-  - repo: https://github.com/hadialqattan/pycln
-    rev: v2.4.0
-    hooks:
-      - id: pycln
-        name: Remove unused imports and variables
-        args: [--config=pyproject.toml]
-
-  # Testing
+  # Testing and coverage
   - repo: local
     hooks:
       - id: pytest
         name: Run unit tests
-        entry: pytest tests
+        entry: pytest tests --quiet
         language: system
         pass_filenames: false
         always_run: true
