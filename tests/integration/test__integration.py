@@ -22,7 +22,9 @@ ARGS = [
     "--profiles-dir",
     str(DBT_PROJECT_DIR),
 ]
-EXAMPLE_FILE = DBT_PROJECT_DIR / "target/compiled/jaffle_shop/models/example.sql"
+EXAMPLE_FILE = (
+    DBT_PROJECT_DIR / "target/compiled/jaffle_shop/models/example.sql"
+)
 EXAMPLE_COMPILED = textwrap.dedent(
     """
     select * from final
@@ -70,7 +72,10 @@ def test__dbt_can_be_successfully_invoked(mock_env, teardown) -> None:
             dbt_py.main()
 
     assert exit_info.value.code == 0
-    assert EXAMPLE_FILE.read_text(encoding="utf-8").strip() == EXAMPLE_COMPILED.strip()
+    assert (
+        EXAMPLE_FILE.read_text(encoding="utf-8").strip()
+        == EXAMPLE_COMPILED.strip()
+    )
 
 
 @pytest.mark.parametrize(
@@ -99,7 +104,7 @@ def test__errors_return_the_correct_exit_code(
         exception: BaseException | None
 
     class MockRunner:
-        def invoke(self, args):  # noqa
+        def invoke(self, args):
             return MockRunnerResult(success=success, exception=exception)
 
     monkeypatch.setattr(dbt.cli.main, "dbtRunner", MockRunner)
