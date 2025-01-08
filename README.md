@@ -138,6 +138,6 @@ Raise an issue, or fork the repo and open a pull request.
 This project uses [Poetry](https://python-poetry.org/) for dependency management and [pre-commit](https://pre-commit.com/) for linting. After cloning the repo, install the dependencies and enable pre-commit:
 
 ```
-poetry install --sync --with dev,test
+poetry install --with dev,test
 pre-commit install --install-hooks
 ```
