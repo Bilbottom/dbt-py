@@ -19,19 +19,17 @@ jobs:
         uses: actions/checkout@v4
 
       - name: 📦 Set up Poetry
-        run: pipx install poetry==1.8.0
+        run: pipx install poetry==2.0.0
 
       - name: 🐍 Set up Python
         uses: actions/setup-python@v5
-        with:
-          python-version: 3.11
-          cache: poetry
+        with: { python-version: 3.11, cache: poetry }
 
       - name: 🔨 Install dependencies
         run: poetry install --with test
 
       - name: ✅ Run unit tests
-        run: poetry run pytest
+        run: poetry run pytest -vvv
         env:
           # TODO: This is configured in the tests, but not being picked up in CI
           DBT_PY_PACKAGE_ROOT: "tests.integration.jaffle-shop.dbt_py_test"
