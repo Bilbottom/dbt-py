@@ -1,7 +1,7 @@
 ---
 ci:
   autoupdate_schedule: quarterly
-  skip: ["identity", "poetry-lock", "pytest", "coverage-badge"]
+  skip: ["identity", "uv-lock", "pytest", "coverage-badge"]
 
 repos:
   - repo: meta
@@ -31,12 +31,10 @@ repos:
       - id: check-ast
         name: Validate Python
 
-  - repo: https://github.com/python-poetry/poetry
-    rev: 2.0.0
+  - repo: https://github.com/astral-sh/uv-pre-commit
+    rev: 0.6.12 # reminder: keep aligned with the GitHub actions
     hooks:
-      - id: poetry-check
-        name: Check that the Poetry configuration is valid
-      - id: poetry-lock
+      - id: uv-lock
         name: Check that the lock file is up-to-date
 
   # Formatting
@@ -47,7 +45,7 @@ repos:
         name: Make code pretty
 
   - repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: v0.8.6
+    rev: v0.11.4
     hooks:
       - id: ruff
         name: Lint Python code
