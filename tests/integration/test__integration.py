@@ -2,11 +2,13 @@
 Integration tests for the package.
 """
 
+import contextlib
 import dataclasses
-import pathlib
 import shutil
 import textwrap
 import unittest.mock
+from collections.abc import Generator
+from typing import Any
 
 import dbt.cli.main
 import pytest
@@ -51,19 +53,21 @@ def mock_env(monkeypatch: pytest.MonkeyPatch) -> None:
     )
 
 
-@pytest.fixture
-def teardown() -> None:
+@pytest.fixture(autouse=True)
+def teardown() -> Generator[None, Any, None]:
     """
     Remove the dbt target directory if it exists.
     """
     yield
     # TODO: I think this should be dynamic
-    target = pathlib.Path("tests/integration/jaffle-shop/target")
+    target = DBT_PROJECT_DIR / "target"
     if target.exists():
-        shutil.rmtree(target)
+        with contextlib.suppress(PermissionError):
+            # TODO: figure out why we're getting these locks
+            shutil.rmtree(target)
 
 
-def test__dbt_can_be_successfully_invoked(mock_env, teardown) -> None:
+def test__dbt_can_be_successfully_invoked(mock_env) -> None:
     """
     Test that dbt can be successfully invoked.
     """

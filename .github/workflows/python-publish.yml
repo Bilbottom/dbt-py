@@ -1,9 +1,13 @@
+# yaml-language-server: $schema=https://json.schemastore.org/github-workflow.json
 ---
-name: Publish to PyPI
+# TODO: Consider using the approach detailed at
+#       https://docs.astral.sh/uv/guides/package/#publishing-your-package
+
+name: Upload Python Package
 
 on:
   release:
-    types: [published]
+    types: ["published"]
 
 permissions:
   contents: read
@@ -15,7 +19,8 @@ jobs:
       - uses: actions/checkout@v4
       - name: Set up Python
         uses: actions/setup-python@v5
-        with: { python-version: "3.11" }
+        with:
+          python-version-file: "pyproject.toml"
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip

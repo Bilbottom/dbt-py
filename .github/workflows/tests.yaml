@@ -1,3 +1,4 @@
+# yaml-language-server: $schema=https://json.schemastore.org/github-workflow.json
 ---
 name: Tests
 run-name: Tests 🧪
@@ -18,18 +19,22 @@ jobs:
       - name: 🛎️ Check out repository
         uses: actions/checkout@v4
 
-      - name: 📦 Set up Poetry
-        run: pipx install poetry==2.0.0
+      - name: 📦 Set up uv
+        uses: astral-sh/setup-uv@v5
+        with:
+          version: "0.6.12" # reminder: keep aligned with the pre-commit hooks
+          enable-cache: true
 
       - name: 🐍 Set up Python
         uses: actions/setup-python@v5
-        with: { python-version: 3.11, cache: poetry }
+        with:
+          python-version-file: "pyproject.toml"
 
       - name: 🔨 Install dependencies
-        run: poetry install --with test
+        run: uv sync --no-default-groups --group test
 
       - name: ✅ Run unit tests
-        run: poetry run pytest -vvv
+        run: uv run pytest -vvv
         env:
           # TODO: This is configured in the tests, but not being picked up in CI
           DBT_PY_PACKAGE_ROOT: "tests.integration.jaffle-shop.dbt_py_test"
