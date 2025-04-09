@@ -51,6 +51,20 @@ This package adds a new executable, `dbt-py`, which injects your custom Python i
 
 The default module/package name is `custom` which would make custom Python available in the dbt Jinja context under the `modules.custom` object. This can be configured (see the [Configuration](#configuration-) section below).
 
+> [!IMPORTANT]
+>
+> If you create the Python files in your dbt repo, you **must** install your own project as a package for your files to be found and imported by dbt.
+>
+> This is typically achieved with `pip install -e .`; please see the pip docs for more details:
+>
+> - [https://pip.pypa.io/en/stable/topics/local-project-installs/#editable-installs](https://pip.pypa.io/en/stable/topics/local-project-installs/#editable-installs)
+>
+> If you use a package manager such as [Poetry](https://python-poetry.org/) or [uv](https://docs.astral.sh/uv/), they should automatically install your project provided you configure the project metadata correctly.
+>
+> See the following repo for a minimal example that uses `requirements.txt` and [setuptools](https://setuptools.pypa.io/en/latest/):
+>
+> - [https://github.com/Bilbottom/dbt-py-test](https://github.com/Bilbottom/dbt-py-test)
+
 ### Custom Module 🐍
 
 Create a module called `custom.py` in the root of your dbt project. This module can contain any Python code you like, for example:
